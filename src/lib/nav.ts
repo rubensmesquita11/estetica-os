@@ -15,6 +15,7 @@ export const NAV: NavItem[] = [
   { href: "/app/dashboard", label: "Dashboard", icon: "📊", cargos: TODOS },
   { href: "/app/agenda", label: "Agenda", icon: "📅", cargos: TODOS },
   { href: "/app/pacientes", label: "Pacientes", icon: "👤", cargos: ["admin", "gestor", "recepcao", "comercial", "profissional"] },
+  { href: "/app/leads", label: "Funil de vendas", icon: "🎯", cargos: ["admin", "gestor", "recepcao", "comercial"] },
   { href: "/app/procedimentos", label: "Procedimentos", icon: "✨", cargos: ["admin", "gestor", "recepcao", "profissional"] },
   { href: "/app/tarefas", label: "Tarefas", icon: "✅", cargos: TODOS },
   { href: "/app/configuracoes", label: "Configurações", icon: "⚙️", cargos: ["admin", "gestor"] },

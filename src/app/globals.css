@@ -1,26 +1,98 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════════
+   ESTÉTICA OS — Design System
+   Paleta sofisticada: porcelana quente + plum/mauve + dourado suave.
+   Transmite confiança, sofisticação e alto padrão (seção 23).
+   ═══════════════════════════════════════════════════════════════ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf7f5;
+  --surface: #ffffff;
+  --surface-2: #f4eeeb;
+  --foreground: #241f24;
+  --muted: #8a8086;
+  --border: #ece5e2;
+
+  --primary: #8e4d6b;
+  --primary-hover: #7a4059;
+  --primary-fg: #ffffff;
+  --primary-soft: #f6e9ef;
+
+  --accent: #c1934f;
+
+  --success: #2f8f6b;
+  --success-soft: #e5f3ec;
+  --warning: #c9873a;
+  --warning-soft: #f8eede;
+  --danger: #c14b57;
+  --danger-soft: #f8e7e8;
+  --info: #4a6d9e;
+  --info-soft: #e8eef6;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --radius: 0.75rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* ── Componentes base reutilizáveis ───────────────────────────── */
+@layer components {
+  /* Base compartilhada por todos os botões (Tailwind v4 não deixa
+     um @apply referenciar outra classe customizada, então agrupamos). */
+  .btn,
+  .btn-primary,
+  .btn-ghost,
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5
+           text-sm font-medium transition-colors disabled:opacity-50
+           disabled:pointer-events-none cursor-pointer;
+  }
+  .btn-primary {
+    @apply bg-primary text-primary-fg hover:bg-primary-hover;
+  }
+  .btn-ghost {
+    @apply bg-transparent text-foreground hover:bg-surface-2;
+  }
+  .btn-outline {
+    @apply border border-border bg-surface text-foreground hover:bg-surface-2;
+  }
+  .card {
+    @apply rounded-xl border border-border bg-surface p-5 shadow-sm;
+  }
+  .input {
+    @apply w-full rounded-lg border border-border bg-surface px-3.5 py-2.5 text-sm
+           text-foreground placeholder:text-muted outline-none
+           focus:border-primary focus:ring-2 focus:ring-primary/15 transition;
+  }
+  .label {
+    @apply block text-sm font-medium text-foreground mb-1.5;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
 }

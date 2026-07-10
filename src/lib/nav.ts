@@ -1,0 +1,25 @@
+// Itens de navegação e quais cargos veem cada um.
+// Usado tanto no menu quanto para bloquear acesso.
+import type { Cargo } from "@/lib/types";
+
+export interface NavItem {
+  href: string;
+  label: string;
+  icon: string;
+  cargos: Cargo[]; // cargos que enxergam este item
+}
+
+const TODOS: Cargo[] = ["admin", "gestor", "recepcao", "comercial", "profissional", "financeiro"];
+
+export const NAV: NavItem[] = [
+  { href: "/app/dashboard", label: "Dashboard", icon: "📊", cargos: TODOS },
+  { href: "/app/agenda", label: "Agenda", icon: "📅", cargos: TODOS },
+  { href: "/app/pacientes", label: "Pacientes", icon: "👤", cargos: ["admin", "gestor", "recepcao", "comercial", "profissional"] },
+  { href: "/app/procedimentos", label: "Procedimentos", icon: "✨", cargos: ["admin", "gestor", "recepcao", "profissional"] },
+  { href: "/app/tarefas", label: "Tarefas", icon: "✅", cargos: TODOS },
+  { href: "/app/configuracoes", label: "Configurações", icon: "⚙️", cargos: ["admin", "gestor"] },
+];
+
+export function navPermitido(cargo: Cargo): NavItem[] {
+  return NAV.filter((item) => item.cargos.includes(cargo));
+}
